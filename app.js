@@ -18,11 +18,10 @@ new Vue({
             this.todoName = ''
         },
         removeTodo(id){
-            const todos = this.todos.filter(item => item.id !== id);
-            this.todos = todos;
+            this.todos = this.todos.filter(item => item.id !== id);
         },
         submitTodoEdit(){
-            const updatedTodos = this.todos.map(item => {
+            this.todos = this.todos.map(item => {
                 if(item.id === this.selectedTodo.id){
                     return {
                         ...this.selectedTodo,
@@ -32,7 +31,6 @@ new Vue({
                 return item
             });
 
-            this.todos = updatedTodos;
             this.isEditing = false;
         },
         selectTodoEdit(todo){
@@ -41,18 +39,16 @@ new Vue({
             this.todoName = todo.name;
         },
         removedCompletedTodos(){
-            const incompleteTodos = this.todos.filter(item => !item.complete)
-            this.todos = incompleteTodos;
+            this.todos = this.todos.filter(item => !item.complete);
         },
         toggleComplete(id){
-            const todos = this.todos.map(item => {
+            this.todos = this.todos.map(item => {
                 if(item.id === id){
                     item.complete = !item.complete
                     return item
                 }
                 return item
-            })
-            this.todos = todos;
+            });
         }
     }
 })
