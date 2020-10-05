@@ -32,7 +32,7 @@
         <div v-if="todos.length > 0 && !isEditing">
             <h2>Tasks</h2>
             <div v-for="todo in todos" @click.prevent="toggleComplete(todo.id)">
-                <p >{{ todo.name }}</p>
+                <p> name: {{ todo.name }}</p>
                 <button @click.prevent="selectTodoEdit(todo)">Edit</button>
                 <span @click="removeTodo(todo.id)">X</span>
             </div>
