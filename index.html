@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue ToDo</title>
+    <script src="https://npmcdn.com/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>Vue ToDo App</h1>
+        <div v-if="!isEditing">
+            <h2>Add a ToDo!</h2>
+            <form>
+                <input type="text" v-model="todoName"/>
+                <button @click.prevent="addTodo()">Submit!</button>
+            </form>
+            <button @click.prevent="removedCompletedTodos">Clear Completed</button>
+        </div>
+
+        <div v-else>
+            <h2>Edit Your ToDo!</h2>
+            <form>
+                <input type="text" v-model="todoName"/>
+                <button @click.prevent="submitTodoEdit">Submit!</button>
+            </form>
+        </div>
+
+        <div v-if="todos.length > 0 && !isEditing">
+            <h2>Tasks</h2>
+            <div v-for="todo in todos" @click.prevent="toggleComplete(todo.id)">
+                <p>{{ todo.name }}</p>
+                <button @click.prevent="selectTodoEdit(todo)">Edit</button>
+                <span @click="removeTodo(todo.id)">X</span>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
